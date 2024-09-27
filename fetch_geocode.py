@@ -1,6 +1,7 @@
 import csv
 import requests
 import time
+from config import email_address
 
 # Input and output CSV file paths
 input_csv = 'datasets/annual_aqi_by_county_2024.csv'
@@ -18,7 +19,7 @@ def get_lat_lon(county, state):
             'format': 'json'
         }
         headers = {
-            'User-Agent': 'MyPythonApp/1.0 (vokouns@gmail.com)'  # Use your email or a valid identifier
+            'User-Agent': 'MyPythonApp/1.0 (email_address)'  # Use your email or a valid identifier
         }
         response = requests.get(nominatim_url, params=params, headers=headers)
         response.raise_for_status()
