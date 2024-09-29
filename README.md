@@ -17,11 +17,12 @@ Users can interact with the map to find AQI indexes across the United States for
 
 ## References for the data source(s)
 We used air quality data provided by the EPA: https://aqs.epa.gov/aqsweb/airdata/download_files.html. 
-OpenStreetMap API resource for coordinate conversions: https://nominatim.openstreetmap.org/ui/search.html
+
 
 
 ## References for any code used that is not your own
-Coding resource for coordinate conversions: 
-Converting CSV data into GeoJSON data: https://geopandas.org/en/stable/
-Utilized Chat GPT support to get code for converting our CSV data into GeoJSON data.
-Resource for flask requirments: https://flask.palletsprojects.com/en/3.0.x/
+OpenStreetMap API resource for location conversions: https://nominatim.openstreetmap.org/ui/search.html & https://nominatim.org/release-docs/develop/api/Overview/ - utilized Nominatim documentation and OpenAI ChatGPT (11/30/22) support to convert location information into latitude and longitude coordinates.
+
+Converting CSV data into GeoJSON data: https://geopandas.org/en/stable/ - utilized GeoPandas documentation and OpenAI ChatGPT (11/30/22) support to convert CSV data into GeoJSON data.
+
+Resource for creating flask documentation and coding: https://flask.palletsprojects.com/en/3.0.x/
