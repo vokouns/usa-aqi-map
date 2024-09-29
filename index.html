@@ -7,6 +7,16 @@
     <title>United States Air Quality Index</title>
     <link rel="stylesheet" href="static/css/style.css"> 
 </head>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+
+<!-- D3 & Plotly JS -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 <body>
 
     <header>
@@ -28,14 +38,14 @@
 
         <section id="about">
             <h2>States with the Best and Worst AQI</h2>
-            <div id="plot"></div>
+            <div id="bar"></div>
 
             <select id="selDataset">
                 <option value="dataset1">Top Ten States</option>
                 <option value="dataset2">Bottom Ten States</option>
             </select>
 
-            <script src="static/js/aqi_plots.js"></script>
+           <script src="static/js/aqi_plots.js"></script>
         </section>
 
         <section id="contact">

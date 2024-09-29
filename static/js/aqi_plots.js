@@ -40,9 +40,7 @@ d3.json(aqiUrl).then(function(data) {
 
         // Render the plot to the div tag with id "plot"
         Plotly.newPlot("bar", traceData, layout);
-    }).catch(function(error) {
-        console.error("Error fetching the data: ", error);
-    });
+        });
 
 // Function to run on page load
 function init() {}
