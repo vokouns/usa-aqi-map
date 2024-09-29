@@ -1,4 +1,5 @@
-// function to build both charts
+// Function to run on page load
+function init() {
 
 // Use the correct URL for the data
 const aqiUrl = "https://raw.githubusercontent.com/vokouns/usa-aqi-map/refs/heads/main/datasets/output.geojson";
@@ -42,8 +43,7 @@ d3.json(aqiUrl).then(function(data) {
         Plotly.newPlot("bar", traceData, layout);
         });
 
-// Function to run on page load
-function init() {}
+}
 
 // Initialize the dashboard
 init();
