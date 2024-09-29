@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>United States Air Quality Index</title>
     <link rel="stylesheet" href="static/css/style.css"> 
-    <script src="script.js" defer></script> <worst_aqi>
 </head>
 <body>
 
@@ -27,8 +27,15 @@
         </section>
 
         <section id="about">
-            <h2>About Section</h2>
-            <p>shows air quality index by state in the USA.</p>
+            <h2>States with the Best and Worst AQI</h2>
+            <div id="plot"></div>
+
+            <select id="selDataset">
+                <option value="dataset1">Top Ten States</option>
+                <option value="dataset2">Bottom Ten States</option>
+            </select>
+
+            <script src="static/js/aqi_plots.js"></script>
         </section>
 
         <section id="contact">
