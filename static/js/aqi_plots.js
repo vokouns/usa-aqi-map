@@ -10,9 +10,9 @@ d3.json(aqiUrl).then(function(data) {
 
         // Make sure to access the correct data structure
         // Assuming 'features' is where your actual data resides
-        let aqiData = data.output.map(output => ({
-            State: data.output.State, // Adjust based on your data structure
-            Median_AQI: data.output.Median_AQI // Adjust based on your data structure
+        let aqiData = data.features.map(feature => ({
+            State: feature.properties.State, // Adjust based on your data structure
+            Median_AQI: feature.properties.Median_AQI // Adjust based on your data structure
         }));
 
         // Sort the data by Median_AQI in ascending order
@@ -40,7 +40,7 @@ d3.json(aqiUrl).then(function(data) {
         };
 
         // Render the plot to the div tag with id "plot"
-        Plotly.newPlot("bar", traceData, layout);
+        Plotly.newPlot("plot", traceData, layout);
         });
 
 }
