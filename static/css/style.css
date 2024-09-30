@@ -1,14 +1,16 @@
 /* Remove the default margin and padding from the body. */
 body {
-  padding: 0;
+  padding: 50;
   margin: 100;
-}
+  background-color: rgb(196, 237, 255);
+ }
+
 
 /* Set map, body, and html to 100% of the screen size. */
 #map,
 body,
 html {
-  height: 75%;
+  height: 100%;
 }
 
 /* Add the legend */
