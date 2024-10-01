@@ -6,13 +6,16 @@ function init() {
     d3.json(aqiUrl).then(function(data) {
         const aqiData = data.features.map(feature => ({
             County: feature.properties.County,
+            State: feature.properties.State,
             Median_AQI: feature.properties.Median_AQI
         }));
 
         // Store the data globally for later use
         window.aqiData = aqiData;
 
-        
+        const options = ["top", "bottom"];
+        const dropdown = d3.select("#selDataset");
+
         // Populate dropdown options
         options.forEach(option => {
             dropdown.append("option")
@@ -41,7 +44,7 @@ function updatePlotly(selection) {
     const values = [];
 
     for (let i = 0; i < sortedData.length; i++) {
-        names.push(sortedData[i].County);
+        names.push(`${sortedData[i].County}, ${sortedData[i].State}`);
         values.push(sortedData[i].Median_AQI);
     }
 
@@ -59,7 +62,7 @@ function updatePlotly(selection) {
             l: 75,
             r: 75,
             t: 100,
-            b: 50
+            b: 115
         }
     };
 
