@@ -11,14 +11,24 @@ function init() {
 
         // Store the data globally for later use
         window.aqiData = aqiData;
-        updatePlotly('top'); // Default to 'top' when the page loads
+
+        
+        // Populate dropdown options
+        options.forEach(option => {
+            dropdown.append("option")
+                .text(option.charAt(0).toUpperCase() + option.slice(1) + " 10")
+                .attr("value", option);
+        });
+
+        // Default to 'top' when the page loads
+        updatePlotly('top'); 
     });
 }
 
 // Function to update the plot based on dropdown selection
 function updatePlotly(selection) {
     let sortedData;
-    
+
     if (selection === 'top') {
         // Sort in ascending order for top 10
         sortedData = window.aqiData.sort((a, b) => a.Median_AQI - b.Median_AQI).slice(0, 10);
@@ -27,8 +37,13 @@ function updatePlotly(selection) {
         sortedData = window.aqiData.sort((a, b) => b.Median_AQI - a.Median_AQI).slice(0, 10);
     }
 
-    const names = sortedData.map(object => object.County);
-    const values = sortedData.map(object => object.Median_AQI);
+    const names = [];
+    const values = [];
+
+    for (let i = 0; i < sortedData.length; i++) {
+        names.push(sortedData[i].County);
+        values.push(sortedData[i].Median_AQI);
+    }
 
     // Create the trace for the plot
     const trace = {
@@ -59,3 +74,4 @@ d3.selectAll("#selDataset").on("change", function() {
 
 // Initialize the dashboard
 init();
+
