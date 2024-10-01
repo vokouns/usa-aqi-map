@@ -1,47 +1,104 @@
-/* Remove the default margin and padding from the body. */
+/* Remove default margin and padding from the body */
 body {
   margin: 50;
   padding: 0;
-  background-color: rgba(196, 237, 255, 0.425);
-  background-image: url('city_background.svg'); /* Add background image */
-  background-size: cover; /* Cover the whole page */
-  background-repeat: repeat; /* Prevent repeating */
-  background-position: center center; /* Center the image */
+  background-color: rgba(196, 237, 255, 0.425); /* Light background */
+  background-image: url('city_background.svg'); /* Add a background image */
+  background-size: cover; /* Ensure the background image covers the entire page */
+  background-repeat: no-repeat; /* Prevent background repetition */
+  background-position: center center; /* Center the background image */
+  font-family: Arial, sans-serif; /* Optional font */
 }
 
-/* Set map, body, and html to 100% of the screen size. */
+/* Ensure that html and body take up the full height and width */
 html, body {
   height: 100%;
   width: 100%;
 }
 
-/* Ensure the map has explicit dimensions */
-#map {
-  height: 600px; /* Set a fixed height for the map */
-  width: 100%;   /* Make the map full width */
-  background-color: white; /* Add background color to ensure visibility */
-  position: relative; /* Ensure it respects layout rules */
-}
-
-/* Ensure sections have their own background for readability */
-main {
-  background-color: rgb(255, 255, 255); /* Slight transparency for readability */
+/* Main layout container */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Full height container */
   padding: 20px;
-  border-radius: 10px;
 }
-/* Add the legend */
 
-/* .legend {
-  padding: 10px;
-  font-family: Sanchez, serif;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 18px;
-  color: #555;
-  background-color: white;
+/* Styling for the map container to take up its parent's full size */
+#map {
+  height: 600px; /* Fixed height for the map */
+  width: 100%;    /* Takes up 80% of the available width */
+  max-width: 1200px; /* Max width for larger screens */
+  border: 2px solid #ccc; /* Optional border */
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-} */
-  
+}
 
+/* Optional: Styling for the header */
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #00457c; /* Dark blue background */
+  color: white;
+}
+
+/* Styling for the legend container */
+.leaflet-control.legend {
+  background-color: #fff; /* Set a white background */
+  padding: 10px; /* Add some padding inside the legend */
+  font-size: 14px; /* Set font size */
+  line-height: 18px;
+  color: #555; /* Text color */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+}
+
+/* Styling for the color boxes inside the legend */
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+/* Styling for the legend title */
+.legend-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Optional: Styling for the navigation links */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* General styling for the footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #00457c;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
 
