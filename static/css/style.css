@@ -1,6 +1,6 @@
 /* Remove the default margin and padding from the body. */
 body {
-  margin: 0;
+  margin: 50;
   padding: 0;
   background-color: rgba(196, 237, 255, 0.425);
   background-image: url('city_background.svg'); /* Add background image */
