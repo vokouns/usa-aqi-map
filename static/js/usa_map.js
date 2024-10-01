@@ -19,7 +19,7 @@ function getColor(aqi) {
 
 // Define a function to create markers with different color based on AQI
 function createMarker(feature, latlng) {
-    var aqi = feature.properties.aqi; // Get AQI from the GeoJSON feature
+    var aqi = feature.properties.Max_AQI; // Get AQI from the GeoJSON feature
 
     // Define the circle marker style
     var markerStyle = {
@@ -37,12 +37,12 @@ function createMarker(feature, latlng) {
 
 // Define a function to bind popups with information
 function onEachFeature(feature, layer) {
-    var county = feature.properties.county; // County name
-    var state = feature.properties.state; // State name
-    var aqi = feature.properties.aqi; // AQI value
+    var county = feature.properties.County; // County name
+    var state = feature.properties.State; // State name
+    var aqi = feature.properties.Max_AQI; // Median AQI value
 
     // Bind a popup to the marker
-    layer.bindPopup(`<strong>${county}, ${state}</strong><br/>Air Quality Index: ${aqi}`);
+    layer.bindPopup(`<strong>${county}, ${state}</strong><br/>Max Air Quality Index: ${aqi}`);
 }
 
 // Load the GeoJSON data from the URL
