@@ -7,12 +7,11 @@
     <title>United States Air Quality Index</title>
 
     <!-- Leaflet CSS -->
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-    <!-- Our CSS -->
-    <link rel="stylesheet" type="text/css" href="static/css/style.css"> 
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -21,16 +20,14 @@
     <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
 
     <!-- D3 JavaScript -->
-     <script src="https://d3js.org/d3.v7.min.js"></script>
-     
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
     <!-- Plotly JavaScript -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-
 </head>
 
-
-   <header>
+<body>
+    <header>
         <h1>United States Air Quality Index</h1>
         <nav>
             <ul>
@@ -40,23 +37,20 @@
             </ul>
         </nav>
     </header>
-<body>
+
     <main>
         <section id="home">
-            <h2>AQI Map</h2>
-             <!-- The div that holds our map -->
-            <div id="map">
+            <div class="container">
+                <div id="map"></div> <!-- Map will take up the whole container with no specific percentage -->
             </div>
         </section>
 
         <section id="about">
             <h2>States with the Worst and Best Median AQI</h2>
-             <div class="row">
-                <div class="col-md-12">
-                    <!-- The div that holds our charts -->
-                    <div id="plot"></div>
-                </div>
-                
+            <div>
+                <!-- The div that holds our charts -->
+                <div id="plot"></div>
+
                 <select id="selDataset">
                     <option value="dataset1">Top Ten States</option>
                     <option value="dataset2">Bottom Ten States</option>
@@ -64,22 +58,22 @@
             </div>
 
             <!-- Our Plots JavaScript -->
-           <script src="static/js/aqi_plots.js"></script>
+            <script src="static/js/aqi_plots.js"></script>
         </section>
 
         <section id="contact">
             <h2>Contact Section</h2>
-            <p>Brandon Umana - https://github.com/Brandon9353.
-            <p> scott Park - https://github.com/vokouns.
-            <p> Ioana Platon - https://github.com/IoanaPlaton.
-            <p> Ethan Devey - https://github.com/edevey27.
-            </p>
+            <p>Brandon Umana - https://github.com/Brandon9353.</p>
+            <p>Scott Park - https://github.com/vokouns.</p>
+            <p>Ioana Platon - https://github.com/IoanaPlaton.</p>
+            <p>Ethan Devey - https://github.com/edevey27.</p>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 the BSIE group. All rights reserved.</p>
     </footer>
+
     <script src="static/js/usa_map.js"></script>
 </body>
 </html>
