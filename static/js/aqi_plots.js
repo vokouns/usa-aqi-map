@@ -1,18 +1,12 @@
-// Function to run on page load
+// Function to initialize the dashboard
 function init() {
+    const aqiUrl = "https://raw.githubusercontent.com/vokouns/usa-aqi-map/refs/heads/main/datasets/output.geojson";
 
-// Use the correct URL for the data
-const aqiUrl = "https://raw.githubusercontent.com/vokouns/usa-aqi-map/refs/heads/main/datasets/output.geojson";
-
-// Fetch the JSON data
-d3.json(aqiUrl).then(function(data) {
-    console.log(data);
-
-        // Make sure to access the correct data structure
-        // Assuming 'features' is where your actual data resides
-        let aqiData = data.features.map(feature => ({
-            County: feature.properties.County, // Adjust based on your data structure
-            Median_AQI: feature.properties.Median_AQI // Adjust based on your data structure
+    // Fetch the JSON data
+    d3.json(aqiUrl).then(function(data) {
+        const aqiData = data.features.map(feature => ({
+            County: feature.properties.County,
+            Median_AQI: feature.properties.Median_AQI
         }));
 
         // Store the data globally for later use
@@ -51,42 +45,32 @@ function updatePlotly(selection) {
         values.push(sortedData[i].Median_AQI);
     }
 
-//         // Select the top 10 entries
-//         let bottom10Data = sortedData.slice(0, 10);
+    // Create the trace for the plot
+    const trace = {
+        x: names,
+        y: values,
+        type: "bar"
+    };
 
-//         // State names for the bottom 10
-//         let names = bottom10Data.map(object => object.County);
+    // Render the plot
+    const layout = {
+        title: selection === 'top' ? "Top 10 Counties by AQI" : "Bottom 10 Counties by AQI",
+        margin: {
+            l: 75,
+            r: 75,
+            t: 100,
+            b: 50
+        }
+    };
 
-//         // Trace for the bottom 10 data
-//         let trace2 = {
-//             x: names,
-//             y: bottom10Data.map(object => object.Median_AQI),
-//             type: "bar"
-//         };
+    Plotly.newPlot("plot", [trace], layout);
+}
 
-//         // Data trace array
-//         let traceData = [trace2];
-
-//         // Apply the group barmode to the layout
-//         let layout = {
-//             title: "Top 10 Counties by AQI",
-//             margin: {
-//                 l: 75,
-//                 r: 75,
-//                 t: 100,
-//                 b: 50
-//               }
-//         };
-
-//         // Render the plot to the div tag with id "plot"
-//         Plotly.newPlot("plot", traceData, layout);
-//         });
-// }
+// Event listener for dropdown change
+d3.selectAll("#selDataset").on("change", function() {
+    const selectedValue = d3.select(this).property("value");
+    updatePlotly(selectedValue);
+});
 
 // Initialize the dashboard
-<<<<<<< HEAD
 init();
-=======
-init();
-
->>>>>>> 25b98973b1f44a8ab944a57da851ba743ab5eebe
