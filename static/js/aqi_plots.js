@@ -13,23 +13,23 @@ function init() {
         // Store the data globally for later use
         window.aqiData = aqiData;
 
-        const options = ["top", "bottom"];
-        const dropdown = d3.select("#selDataset");
+       
+        const dropdown = d3.select("#selDatasetCounties");
 
-        // Populate dropdown options
-        options.forEach(option => {
-            dropdown.append("option")
-                .text(option.charAt(0).toUpperCase() + option.slice(1) + " 10")
-                .attr("value", option);
-        });
+// Clear any existing options
+dropdown.html('');
+
+// Add "Top 10 Counties" and "Bottom 10 Counties" options
+dropdown.append("option").text("Top 10 Counties").attr("value", "top");
+dropdown.append("option").text("Bottom 10 Counties").attr("value", "bottom");
 
         // Default to 'top' when the page loads
-        updatePlotly('top'); 
+        updateCountiesPlotly('top'); 
     });
 }
 
 // Function to update the plot based on dropdown selection
-function updatePlotly(selection) {
+function updateCountiesPlotly(selection) {
     let sortedData;
 
     if (selection === 'top') {
@@ -52,12 +52,15 @@ function updatePlotly(selection) {
     const trace = {
         x: names,
         y: values,
-        type: "bar"
+        type: "bar",
+        marker: {
+            color: selection === 'top' ? 'green' : 'red'  // Conditionally set the bar color
+        }
     };
 
     // Render the plot
     const layout = {
-        title: selection === 'top' ? "Top 10 Counties by AQI" : "Bottom 10 Counties by AQI",
+        title: selection === 'top' ? "Top 10 Counties by Median AQI" : "Bottom 10 Counties by Median AQI",
         margin: {
             l: 75,
             r: 75,
@@ -68,11 +71,15 @@ function updatePlotly(selection) {
 
     Plotly.newPlot("plot", [trace], layout);
 }
-
+// Function to handle dropdown change
+function optionChanged() {
+    const selection = document.getElementById("selDatasetCounties").value;
+    updateCountiesPlotly(selection); // Call the update function based on the selection
+}
 // Event listener for dropdown change
-d3.selectAll("#selDataset").on("change", function() {
+d3.selectAll("#selDatasetCounties").on("change", function() {
     const selectedValue = d3.select(this).property("value");
-    updatePlotly(selectedValue);
+    updateCountiesPlotly(selectedValue);  // Calls the plot update based on the selected value
 });
 
 // Initialize the dashboard
