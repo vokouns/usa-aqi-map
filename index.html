@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,19 +46,22 @@
         </section>
 
         <section id="about">
-            <h2>Counties with the Worst and Best Median AQI</h2>
-            <div>
-                <!-- The div that holds our charts -->
-                <div id="plot"></div>
+            <h2>Counties with the Best and Worst Median AQI</h2>
+<div id="plot"></div>
+<select id="selDatasetCounties">
+    <option value="top">Top 10 Counties</option>
+    <option value="bottom">Bottom 10 Counties</option>
+</select>
+<script src="static/js/aqi_plots.js"></script>
 
-                <select id="selDataset">
-                    <!-- <option value="top">Top 10</option> -->
-                    <!-- <option value="bottom">Bottom 10</option> -->
-                </select>
-            </div>
-
-            <!-- Our Plots JavaScript -->
-            <script src="static/js/aqi_plots.js"></script>
+<!-- States Plot -->
+<h2>States with the Best and Worst Average Median AQI</h2>
+<div id="plotstate"></div>
+<select id="selDatasetStates">
+    <option value="topstate">Top 10 States</option>
+    <option value="bottomstate">Bottom 10 States</option>
+</select>
+<script src="static/js/state_plots.js"></script>
         </section>
 
         <section id="contact">
