@@ -74,9 +74,26 @@ function onEachFeature(feature, layer) {
     var county = feature.properties.County; // County name
     var state = feature.properties.State; // State name
     var aqi = feature.properties.Max_AQI; // Max AQI value
+    var medianAqi = feature.properties.Median_AQI; // Median AQI value
+    var good = feature.properties.Good_Days; // Days in "Good" range
+    var mod_days = feature.properties.Moderate_Days; // Days in "Moderate" range
+    var unhealthy_sensitive = feature.properties.Unhealthy_for_Sensitive_Groups_Days; // Days in "UFSG" range
+    var unhealthy2 = feature.properties.Unhealthy_Days; // Days in "Unhealthy" range
+    var very_unhealthy = feature.properties.Very_Unhealthy_Days; // Days in "Very Unhealthy" range
+    var hazardous = feature.properties.Hazardous_Days // Days in "Hazardous" range
 
     // Bind a popup to the marker
-    layer.bindPopup(`<strong>${county}, ${state}</strong><br/>Max Air Quality Index: ${aqi}`);
+    layer.bindPopup(`
+        <strong>${county}, ${state}</strong></br>
+        Max AQI: ${aqi}</br>
+        Median AQI: ${medianAqi}</br>
+        Good Days: ${good}</br>
+        Moderate Days: ${mod_days}</br>
+        Unhealthy for Sensitive Groups Days: ${unhealthy_sensitive}</br>
+        Unhealthy Days: ${unhealthy2}</br>
+        Very Unhealthy Days: ${very_unhealthy}</br>
+        Hazrdous Days: ${hazardous}</br>
+        `);
 }
 
 // Create empty layers for markers and heatmap
@@ -112,10 +129,10 @@ d3.json('https://raw.githubusercontent.com/vokouns/usa-aqi-map/refs/heads/main/d
 
     // Create heatmap layer and add to heatmapLayer
     var heat = L.heatLayer(heatData, {
-        radius: 35,  // Adjust radius for larger points
-        blur: 20,    // Adjust blur for smoother visualization
+        radius: 40,  // Adjust radius for larger points
+        blur: 15,    // Adjust blur for smoother visualization
         maxZoom: 18,
-        max: 1.0     // Maximum intensity (normalized)
+        max: 0.5     // Maximum intensity (normalized)
     }).addTo(heatmapLayer);  // Add heatmap to heatmapLayer
 
 }).catch(function(error) {
