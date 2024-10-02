@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,52 +31,62 @@
         <h1>United States Air Quality Index</h1>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#map_section">Map</a></li>
+                <li><a href="#county_section">County Plot</a></li>
+                <li><a href="#state_section">State Plot</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="home">
+        <section id="about"></section>
+            <h2>Put a brief message here about project</h2>
+        <section id="map_section">
+            <h2>USA Map of Max AQI</h2>
             <div class="container">
-                <div id="map"></div> <!-- Map will take up the whole container with no specific percentage -->
+                <div id="map"></div>
+            </div>
+        <section id="county_section">
+            <h2>10 Best and Worst Counties (Median AQI)</h2>
+            <div class="container">
+                <div id="plot"></div>
+                <select id="selDatasetCounties">
+                    <option value="top">Top 10 Counties</option>
+                    <option value="bottom">Bottom 10 Counties</option>
+                </select>                
             </div>
         </section>
 
-        <section id="about">
-            <h2>Counties with the Best and Worst Median AQI</h2>
-<div id="plot"></div>
-<select id="selDatasetCounties">
-    <option value="top">Top 10 Counties</option>
-    <option value="bottom">Bottom 10 Counties</option>
-</select>
-<script src="static/js/aqi_plots.js"></script>
-
-<!-- States Plot -->
-<h2>States with the Best and Worst Average Median AQI</h2>
-<div id="plotstate"></div>
-<select id="selDatasetStates">
-    <option value="topstate">Top 10 States</option>
-    <option value="bottomstate">Bottom 10 States</option>
-</select>
-<script src="static/js/state_plots.js"></script>
+        <section id="state_section">
+            <h2>10 Best and Worst States (Median AQI)</h2>
+            <div class="container">
+                <div id="plotstate"></div>
+                <select id="selDatasetStates">
+                    <option value="topstate">Top 10 States</option>
+                    <option value="bottomstate">Bottom 10 States</option>  
+                </select>              
+            </div>
         </section>
+
+
 
         <section id="contact">
-            <h2>Contact Section</h2>
-            <p>Brandon Umana - https://github.com/Brandon9353.</p>
-            <p>Scott Park - https://github.com/vokouns.</p>
-            <p>Ioana Platon - https://github.com/IoanaPlaton.</p>
-            <p>Ethan Devey - https://github.com/edevey27.</p>
+            <h3>Contact Section</h3>
+            <p>Brandon Umana - <a href="https://github.com/Brandon9353" target="_blank">GitHub Profile</a></p>
+            <p>Scott Park - <a href="https://github.com/vokouns" target="_blank">GitHub Profile</a></p>
+            <p>Ioana Platon - <a href="https://github.com/IoanaPlaton" target="_blank">GitHub Profile</a></p>
+            <p>Ethan Devey - <a href="https://github.com/edevey27" target="_blank">GitHub Profile</a></p>
         </section>
     </main>
+    </main>
+<footer>
+    <p>&copy; 2024 the BSIE group. All rights reserved.</p>
+</footer>
 
-    <footer>
-        <p>&copy; 2024 the BSIE group. All rights reserved.</p>
-    </footer>
-
-    <script src="static/js/usa_map.js"></script>
+<script src="static/js/usa_map.js"></script>
+<script src="static/js/aqi_plots.js"></script>
+<script src="static/js/state_plots.js"></script>
 </body>
 </html>

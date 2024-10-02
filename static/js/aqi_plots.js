@@ -60,13 +60,13 @@ function updateCountiesPlotly(selection) {
 
     // Render the plot
     const layout = {
-        title: selection === 'top' ? "Top 10 Counties by Median AQI" : "Bottom 10 Counties by Median AQI",
-        margin: {
-            l: 75,
-            r: 75,
-            t: 100,
-            b: 115
-        }
+        title: selection === 'top' ? "Top 10 Counties by Median AQI" : "Bottom 10 Counties by Median AQI"
+        // margin: {
+        //     l: 75,
+        //     r: 75,
+        //     t: 100,
+        //     b: 115
+        // }
     };
 
     Plotly.newPlot("plot", [trace], layout);

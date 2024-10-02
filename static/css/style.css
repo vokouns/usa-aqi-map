@@ -1,13 +1,17 @@
 /* Remove default margin and padding from the body */
 body {
-  margin: 50;
-  padding: 0;
+  margin: 1px;
   background-color: rgba(196, 237, 255, 0.425); /* Light background */
   background-image: url('city_background.svg'); /* Add a background image */
   background-size: cover; /* Ensure the background image covers the entire page */
   background-repeat: no-repeat; /* Prevent background repetition */
   background-position: center center; /* Center the background image */
+  background-attachment: fixed; /* Keeps the background image from scrolling */
   font-family: Arial, sans-serif; /* Optional font */
+}
+
+h2 {
+  text-align: center;
 }
 
 /* Ensure that html and body take up the full height and width */
@@ -23,7 +27,24 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100%; /* Full height container */
-  padding: 20px;
+  width: 95%;
+  padding: 30px;
+}
+
+#plot {
+  height: 100%; /* Fixed height for the map */
+  width: 100%;    /* Takes up 80% of the available width */
+  max-width: 1200px; /* Max width for larger screens */
+  border: 2px solid #ccc; /* Optional border */
+  border-radius: 5px;
+}
+
+#plotstate {
+  height: 600px; /* Fixed height for the map */
+  width: 100%;    /* Takes up 80% of the available width */
+  max-width: 1200px; /* Max width for larger screens */
+  border: 2px solid #ccc; /* Optional border */
+  border-radius: 5px;
 }
 
 /* Styling for the map container to take up its parent's full size */
@@ -38,7 +59,7 @@ html, body {
 /* Optional: Styling for the header */
 header {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   background-color: #00457c; /* Dark blue background */
   color: white;
 }

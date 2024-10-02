@@ -68,13 +68,13 @@ function updateStatesPlotly(selection) {
 
     // Render the plot
     const layout = {
-        title: selection === 'topstate' ? "Top 10 States by Average Median AQI" : "Bottom 10 States by Average Median AQI",
-        margin: {
-            l: 75,
-            r: 75,
-            t: 100,
-            b: 50
-        }
+        title: selection === 'topstate' ? "Top 10 States by Average Median AQI" : "Bottom 10 States by Average Median AQI"
+        // margin: {
+        //     l: 75,
+        //     r: 75,
+        //     t: 100,
+        //     b: 50
+        // }
     };
 
     Plotly.newPlot("plotstate", [trace], layout);
