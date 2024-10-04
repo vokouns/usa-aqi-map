@@ -31,66 +31,72 @@ function init() {
             avgAQI: stateAQIData[state].totalAQI / stateAQIData[state].countyCount
         }));
 
-        // Store the state-level AQI data globally
-        window.avgStateAQIData = avgStateAQIData;
+        // Sort the states by average AQI
+        const sortedData = avgStateAQIData.sort((a, b) => a.avgAQI - b.avgAQI);
 
-        // Initialize with the top 10 states on page load
-        updateStatesPlotly('topstate');
+        // Get the top 10 and bottom 10 states by AQI
+        const top10States = sortedData.slice(0, 10);  // Top 10 with the lowest AQI
+        const bottom10States = sortedData.slice(-10).reverse();  // Bottom 10 with the highest AQI
+
+        // Prepare data for the plot
+        const topStatesNames = top10States.map(state => state.State);
+        const topStatesAQI = top10States.map(state => state.avgAQI);
+
+        const bottomStatesNames = bottom10States.map(state => state.State);
+        const bottomStatesAQI = bottom10States.map(state => state.avgAQI);
+
+        // Create the traces for Top 10 and Bottom 10
+        const topTrace = {
+            x: topStatesNames,
+            y: topStatesAQI,
+            type: 'bar',
+            name: 'Top 10 States',
+            marker: { color: 'green' },
+            visible: true  // Initially visible
+        };
+
+        const bottomTrace = {
+            x: bottomStatesNames,
+            y: bottomStatesAQI,
+            type: 'bar',
+            name: 'Bottom 10 States',
+            marker: { color: 'red' },
+            visible: false  // Initially hidden
+        };
+
+        // Plotly layout with dropdown menu inside the chart
+        const layout = {
+            title: 'Top 10 and Bottom 10 States by Average AQI',
+            xaxis: { title: 'States' },
+            yaxis: { title: 'Average AQI' },
+            updatemenus: [{
+                buttons: [
+                    {
+                        method: 'update',
+                        label: 'Top 10 States',
+                        args: [{'visible': [true, false]}],  // Show top 10, hide bottom 10
+                    },
+                    {
+                        method: 'update',
+                        label: 'Bottom 10 States',
+                        args: [{'visible': [false, true]}],  // Hide top 10, show bottom 10
+                    }
+                ],
+                direction: 'down',
+                showactive: true,
+                x: 0,
+                xanchor: 'left',
+                y: 1.15,
+                yanchor: 'top'
+            }]
+        };
+
+        // Render the bar chart using Plotly
+        Plotly.newPlot("plotstate", [topTrace, bottomTrace], layout);
+    }).catch(function (error) {
+        console.log("Error loading the GeoJSON file:", error);
     });
 }
-
-// Function to update the plot based on dropdown selection
-function updateStatesPlotly(selection) {
-    let sortedData;
-
-    // Sort the states by average AQI
-    if (selection === 'topstate') {
-        // Sort in ascending order for top 10 states (best AQI)
-        sortedData = [...window.avgStateAQIData].sort((a, b) => a.avgAQI - b.avgAQI).slice(0, 10);
-    } else {
-        // Sort in descending order for bottom 10 states (worst AQI)
-        sortedData = [...window.avgStateAQIData].sort((a, b) => b.avgAQI - a.avgAQI).slice(1, 11);
-    }
-
-    // Extract state names and their average AQI values for the chart
-    const names = sortedData.map(object => object.State);
-    const values = sortedData.map(object => object.avgAQI);
-
-    // Create the trace for the plot
-    const trace = {
-        x: names,
-        y: values,
-        type: "bar",
-        marker: {
-            color: selection === 'topstate' ? 'green' : 'red'  // Conditionally set the bar color
-        }
-    };
-
-    // Render the plot
-    const layout = {
-        title: selection === 'topstate' ? "Top 10 States by Average Median AQI" : "Bottom 10 States by Average Median AQI"
-        // margin: {
-        //     l: 75,
-        //     r: 75,
-        //     t: 100,
-        //     b: 50
-        // }
-    };
-
-    Plotly.newPlot("plotstate", [trace], layout);
-}
-
-// Function to handle dropdown change
-function optionChanged() {
-    const selection = document.getElementById("selDatasetStates").value;
-    updateStatesPlotly(selection); // Call the update function based on the selection
-}
-
-// Event listener for dropdown change
-d3.selectAll("#selDatasetStates").on("change", function() {
-    const selectedValue = d3.select(this).property("value");
-    updateStatesPlotly(selectedValue);
-});
 
 // Initialize the dashboard
 init();

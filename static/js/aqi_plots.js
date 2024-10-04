@@ -13,18 +13,8 @@ function init() {
         // Store the data globally for later use
         window.aqiData = aqiData;
 
-       
-        const dropdown = d3.select("#selDatasetCounties");
-
-// Clear any existing options
-dropdown.html('');
-
-// Add "Top 10 Counties" and "Bottom 10 Counties" options
-dropdown.append("option").text("Top 10 Counties").attr("value", "top");
-dropdown.append("option").text("Bottom 10 Counties").attr("value", "bottom");
-
-        // Default to 'top' when the page loads
-        updateCountiesPlotly('top'); 
+        // Initialize with the default 'Top 10 Counties'
+        updateCountiesPlotly('top');
     });
 }
 
@@ -33,20 +23,15 @@ function updateCountiesPlotly(selection) {
     let sortedData;
 
     if (selection === 'top') {
-        // Sort in ascending order for top 10
+        // Sort in ascending order for top 10 counties
         sortedData = window.aqiData.sort((a, b) => a.Median_AQI - b.Median_AQI).slice(0, 10);
     } else {
-        // Sort in descending order for bottom 10
+        // Sort in descending order for bottom 10 counties
         sortedData = window.aqiData.sort((a, b) => b.Median_AQI - a.Median_AQI).slice(0, 10);
     }
 
-    const names = [];
-    const values = [];
-
-    for (let i = 0; i < sortedData.length; i++) {
-        names.push(`${sortedData[i].County}, ${sortedData[i].State}`);
-        values.push(sortedData[i].Median_AQI);
-    }
+    const names = sortedData.map(county => `${county.County}, ${county.State}`);
+    const values = sortedData.map(county => county.Median_AQI);
 
     // Create the trace for the plot
     const trace = {
@@ -58,29 +43,34 @@ function updateCountiesPlotly(selection) {
         }
     };
 
-    // Render the plot
+    // Create the layout with a dropdown inside the chart
     const layout = {
-        title: selection === 'top' ? "Top 10 Counties by Median AQI" : "Bottom 10 Counties by Median AQI"
-        // margin: {
-        //     l: 75,
-        //     r: 75,
-        //     t: 100,
-        //     b: 115
-        // }
+        title: selection === 'top' ? "Top 10 Counties by Median AQI" : "Bottom 10 Counties by Median AQI",
+        updatemenus: [{
+            buttons: [
+                {
+                    method: 'update',
+                    label: 'Top 10 Counties',
+                    args: [{'visible': [true, false]}],  // Show Top 10, hide Bottom 10
+                },
+                {
+                    method: 'update',
+                    label: 'Bottom 10 Counties',
+                    args: [{'visible': [false, true]}],  // Hide Top 10, show Bottom 10
+                }
+            ],
+            direction: 'down',
+            showactive: true,
+            x: 0,
+            xanchor: 'left',
+            y: 1.15,
+            yanchor: 'top'
+        }]
     };
 
+    // Render the plot using Plotly
     Plotly.newPlot("plot", [trace], layout);
 }
-// Function to handle dropdown change
-function optionChanged() {
-    const selection = document.getElementById("selDatasetCounties").value;
-    updateCountiesPlotly(selection); // Call the update function based on the selection
-}
-// Event listener for dropdown change
-d3.selectAll("#selDatasetCounties").on("change", function() {
-    const selectedValue = d3.select(this).property("value");
-    updateCountiesPlotly(selectedValue);  // Calls the plot update based on the selected value
-});
 
 // Initialize the dashboard
 init();
