@@ -66,7 +66,7 @@ function init() {
 
         // Plotly layout with dropdown menu inside the chart
         const layout = {
-            title: 'Top 10 and Bottom 10 States by Average AQI',
+            title: 'Top 10 and Bottom 10 States by Average Median AQI',
             xaxis: { title: 'States' },
             yaxis: { title: 'Average AQI' },
             updatemenus: [{

@@ -40,7 +40,7 @@ html, body {
 }
 
 #plotstate {
-  height: 600px; /* Fixed height for the map */
+  height: 100%; /* Fixed height for the map */
   width: 100%;    /* Takes up 80% of the available width */
   max-width: 1200px; /* Max width for larger screens */
   border: 2px solid #ccc; /* Optional border */

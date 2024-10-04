@@ -61,6 +61,9 @@ function updateCountiesPlotly() {
     // Create the layout with a dropdown inside the chart
     const layout = {
         title: "Top 10 and Bottom 10 Counties by Median AQI",
+        xaxis: {
+            automargin: true,  // Automatically adjust margins for x-axis labels
+        },
         updatemenus: [{
             buttons: [
                 {
