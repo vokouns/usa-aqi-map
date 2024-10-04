@@ -14,38 +14,53 @@ function init() {
         window.aqiData = aqiData;
 
         // Initialize with the default 'Top 10 Counties'
-        updateCountiesPlotly('top');
+        updateCountiesPlotly();
     });
 }
 
-// Function to update the plot based on dropdown selection
-function updateCountiesPlotly(selection) {
-    let sortedData;
+// Function to update the plot with both top 10 and bottom 10 counties
+function updateCountiesPlotly() {
+    // Sort in ascending order for top 10 counties
+    const top10Counties = window.aqiData.sort((a, b) => a.Median_AQI - b.Median_AQI).slice(0, 10);
 
-    if (selection === 'top') {
-        // Sort in ascending order for top 10 counties
-        sortedData = window.aqiData.sort((a, b) => a.Median_AQI - b.Median_AQI).slice(0, 10);
-    } else {
-        // Sort in descending order for bottom 10 counties
-        sortedData = window.aqiData.sort((a, b) => b.Median_AQI - a.Median_AQI).slice(0, 10);
-    }
+    // Sort in descending order for bottom 10 counties
+    const bottom10Counties = window.aqiData.sort((a, b) => b.Median_AQI - a.Median_AQI).slice(0, 10);
 
-    const names = sortedData.map(county => `${county.County}, ${county.State}`);
-    const values = sortedData.map(county => county.Median_AQI);
+    // Prepare data for Top 10 Counties
+    const topNames = top10Counties.map(county => `${county.County}, ${county.State}`);
+    const topValues = top10Counties.map(county => county.Median_AQI);
 
-    // Create the trace for the plot
-    const trace = {
-        x: names,
-        y: values,
+    // Prepare data for Bottom 10 Counties
+    const bottomNames = bottom10Counties.map(county => `${county.County}, ${county.State}`);
+    const bottomValues = bottom10Counties.map(county => county.Median_AQI);
+
+    // Create the trace for Top 10 Counties
+    const topTrace = {
+        x: topNames,
+        y: topValues,
         type: "bar",
+        name: "Top 10 Counties",
         marker: {
-            color: selection === 'top' ? 'green' : 'red'  // Conditionally set the bar color
-        }
+            color: 'green'
+        },
+        visible: true // Initially show top 10
+    };
+
+    // Create the trace for Bottom 10 Counties
+    const bottomTrace = {
+        x: bottomNames,
+        y: bottomValues,
+        type: "bar",
+        name: "Bottom 10 Counties",
+        marker: {
+            color: 'red'
+        },
+        visible: false // Initially hide bottom 10
     };
 
     // Create the layout with a dropdown inside the chart
     const layout = {
-        title: selection === 'top' ? "Top 10 Counties by Median AQI" : "Bottom 10 Counties by Median AQI",
+        title: "Top 10 and Bottom 10 Counties by Median AQI",
         updatemenus: [{
             buttons: [
                 {
@@ -68,8 +83,8 @@ function updateCountiesPlotly(selection) {
         }]
     };
 
-    // Render the plot using Plotly
-    Plotly.newPlot("plot", [trace], layout);
+    // Render the plot with both traces (Top 10 and Bottom 10 Counties)
+    Plotly.newPlot("plot", [topTrace, bottomTrace], layout);
 }
 
 // Initialize the dashboard

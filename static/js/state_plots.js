@@ -35,8 +35,8 @@ function init() {
         const sortedData = avgStateAQIData.sort((a, b) => a.avgAQI - b.avgAQI);
 
         // Get the top 10 and bottom 10 states by AQI
-        const top10States = sortedData.slice(0, 10);  // Top 10 with the lowest AQI
-        const bottom10States = sortedData.slice(-10).reverse();  // Bottom 10 with the highest AQI
+        const top10States = sortedData.slice(1, 11);  // Top 10 with the lowest AQI
+        const bottom10States = sortedData.slice(-10).reverse().slice(1);  // Bottom 10 with the highest AQI
 
         // Prepare data for the plot
         const topStatesNames = top10States.map(state => state.State);
