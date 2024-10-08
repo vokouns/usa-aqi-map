@@ -69,6 +69,17 @@ header {
   color: white;
 }
 
+a:visited {
+  color: red
+}
+
+#contact, footer {
+  background-color: #00457c;
+  color: white;
+  padding: 10px;
+  
+}
+
 /* Styling for the legend container */
 .leaflet-control.legend {
   background-color: #fff; /* Set a white background */
