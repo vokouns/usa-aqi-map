@@ -132,7 +132,7 @@ d3.json('https://raw.githubusercontent.com/vokouns/usa-aqi-map/refs/heads/main/d
         radius: 40,  // Adjust radius for larger points
         blur: 15,    // Adjust blur for smoother visualization
         maxZoom: 18,
-        max: 0.5     // Maximum intensity (normalized)
+        max: 2     // Maximum intensity (normalized)
     }).addTo(heatmapLayer);  // Add heatmap to heatmapLayer
 
 }).catch(function(error) {

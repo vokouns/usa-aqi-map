@@ -4,7 +4,7 @@
 Our group focused on researching air quality across the United States. We found databases via the EPA and leveraged their Air Quality System (AQS) 
 API to get Air Quality Index (AQI) data by county and state in order to produce our maps and charts. The EPS provides data for multiple years, 
 but we focused on 2024 data since we had over 1,000 data sets to work with. The AQI data includes information on healthy days, unhealthy days, 
-hazardous days, max AQI, media AQI, and more. This data can help users determine the air quality across the United States and the number of days with
+hazardous days, max AQI, media AQI, and more. The data was collected up through August 20th, 2024. This data can help users determine the air quality across the United States and the number of days with
 unhealthy air. 
 
 In order to use the CSV data we downloaded, we first had to convert the state and county locations in the file into longitude and latitude. 
@@ -20,7 +20,7 @@ Once we had our data and data links, we began coding our webpage using Visual St
 hold our map and charts and a CSS file to format the overall page. We created separate JS files for our map and our plots to input the JavaScript coding
 into our overall HTML file.
 
-For the map, we used OpenStreetMap and Leaflet to map various air quality data points for the counties in our dataset. We added options for users to add
+For the map, we used OpenStreetMap, Esri, and Leaflet to map various air quality data points for the counties in our dataset. We added options for users to add
 the following overlays: a heatmap, a satellite map, a street map, and markers. The markers are formatted so users of the map can easily tell when each county
 ranks by air quality using the colored-coded index, with green being the best and dark red being the worst.
 
