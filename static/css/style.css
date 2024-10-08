@@ -69,6 +69,11 @@ header {
   color: white;
 }
 
+#about_text {
+  text-align: center;
+  padding: 30px;
+}
+
 a:visited {
   color: red
 }
